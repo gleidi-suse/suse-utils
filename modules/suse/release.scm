@@ -4,6 +4,7 @@
 (define-module (suse release)
   #:use-module (gnu packages compression)
   #:use-module (gnu packages cdrom)
+  #:use-module (gnu packages package-management)
   #:use-module (gnu packages perl)
   #:use-module (gnu packages php)
   #:use-module (gnu packages python)
@@ -69,7 +70,8 @@
                                                (@@ (guix build python-build-system) wrap)))))
    (inputs (list perl
                  php
-                 python))
+                 python
+                 rpm))
    (home-page "https://github.com/openSUSE/openSUSE-release-tools")
    (synopsis "Tools to aid in staging and release work for openSUSE/SUSE")
    (description
@@ -100,4 +102,5 @@ maintenance updates.")
               (install-file "factory-package-news/factory-package-news.py" bin))))))))
    (inputs (list libcdio
                  python
-                 python-cmdln))))
+                 python-cmdln
+                 rpm))))
