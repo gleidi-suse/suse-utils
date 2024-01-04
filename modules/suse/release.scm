@@ -1,13 +1,17 @@
 ;;; SPDX-License-Identifier: GPL-3.0-or-later
-;;; Copyright © 2023 Giacomo Leidi <giacomo.leidi@suse.com>
+;;; Copyright © 2023-2024 Giacomo Leidi <giacomo.leidi@suse.com>
 
 (define-module (suse release)
+  #:use-module (gnu packages check)
   #:use-module (gnu packages compression)
   #:use-module (gnu packages cdrom)
   #:use-module (gnu packages package-management)
   #:use-module (gnu packages perl)
+  #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages php)
   #:use-module (gnu packages python)
+  #:use-module (gnu packages python-build)
+  #:use-module (gnu packages swig)
   #:use-module (guix download)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
@@ -18,6 +22,23 @@
   #:use-module (guix build-system gnu)
   #:use-module (guix build-system python)
   #:use-module (guix build-system pyproject))
+
+(define-public python-pycdio
+  (package
+   (inherit libcdio)
+   (name "python-pycdio")
+   (version "2.1.1")
+   (source
+    (origin
+     (method url-fetch)
+     (uri (pypi-uri "pycdio" version))
+     (sha256
+      (base32 "1y590j804f2chpw0dyvwlmrmk7rzbp0y58idrfib3dslqnw4swv1"))))
+   (build-system python-build-system)
+   (inputs
+    (list libcdio))
+   (native-inputs
+    (list pkg-config python-setuptools swig python-nose))))
 
 (define-public python-cmdln
   (package
@@ -99,8 +120,10 @@ maintenance updates.")
           (lambda _
             (let ((bin (string-append #$output "/bin")))
               (mkdir-p bin)
+              (symlink (string-append #$(this-package-input "python") "/bin/python3")
+                       (string-append bin "/python.py"))
               (install-file "factory-package-news/factory-package-news.py" bin))))))))
-   (inputs (list libcdio
-                 python
+   (inputs (list python
                  python-cmdln
+                 python-pycdio
                  rpm))))
