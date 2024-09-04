@@ -19,7 +19,7 @@
       (local-file (string-append %channel-root "/SUSE_Trust_Root.crt")))
      (build-system copy-build-system)
      (arguments
-      (list #:install-plan #~'(("./SUSE_Trust_Root.crt" "/etc/ssl/certs/"))))
+      (list #:install-plan #~'(("./SUSE_Trust_Root.crt" "/etc/ssl/certs/SUSE_Trust_Root.pem"))))
      (synopsis "CA certificates from SUSE")
      (description
       "This package provides certificates for SUSE's internal Certification
