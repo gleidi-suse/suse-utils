@@ -1,5 +1,5 @@
 ;;; SPDX-License-Identifier: GPL-3.0-or-later
-;;; Copyright © 2023-2024 Giacomo Leidi <giacomo.leidi@suse.com>
+;;; Copyright © 2023-2024, 2026 Giacomo Leidi <giacomo.leidi@suse.com>
 
 (define-module (suse release)
   #:use-module (gnu packages check)
@@ -38,7 +38,7 @@
    (inputs
     (list libcdio))
    (native-inputs
-    (list pkg-config python-setuptools swig python-nose))))
+    (list pkg-config python-setuptools swig python-pynose))))
 
 (define-public python-cmdln
   (package

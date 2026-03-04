@@ -43,3 +43,13 @@ Otherwise, if you already have a `.config/guix/channels.scm` you can simply prep
        %default-channels)
 ```
 
+
+## Authenticate
+
+To authenticate the code run:
+
+``` shell
+git fetch origin keyring:keyring && guix git authenticate --stats --cache-key=suse-utils d4a947eb5b4a73f2a467e67569f7aaf3aafc1aa2 '97A2 CB8F B066 F894 9928  CF80 DE9B E0AC E824 6F08'
+```
+
+`
