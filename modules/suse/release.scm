@@ -11,6 +11,7 @@
   #:use-module (gnu packages php)
   #:use-module (gnu packages python)
   #:use-module (gnu packages python-build)
+  #:use-module (gnu packages python-check)
   #:use-module (gnu packages swig)
   #:use-module (guix download)
   #:use-module (guix gexp)
